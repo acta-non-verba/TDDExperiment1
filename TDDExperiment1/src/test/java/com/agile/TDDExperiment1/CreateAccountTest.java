@@ -32,7 +32,7 @@ public class CreateAccountTest {
         CreateAccount acc = new CreateAccount();
         // Act
         String actual = acc.accountCreation("username", "");
-        String expected = "Account Creation Failed.";
+        String expected = "Account Creation Failed, password cannot be empty.";
         // Assert
         Assert.assertEquals(expected, actual);
     }
@@ -109,7 +109,7 @@ public class CreateAccountTest {
         CreateAccount acc = new CreateAccount();
         // Act
         String actual = acc.accountCreation("UserNameMorethanEleven", "12");
-        String expected = "Account creation failed because username contains more than 11 characters.";
+        String expected = "Account creation failed because username length should be less  than 11 and greater than 1.";
         // Assert
         Assert.assertEquals(expected, actual);
     }
@@ -120,7 +120,7 @@ public class CreateAccountTest {
         CreateAccount acc = new CreateAccount();
         // Act
         String actual = acc.accountCreation("U", "2");
-        String expected = "Account creation failed because username contains less than 2 characters.";
+        String expected = "Account creation failed because username length should be less  than 11 and greater than 1.";
         // Assert
         Assert.assertEquals(expected, actual);
     }
@@ -134,5 +134,17 @@ public class CreateAccountTest {
         String expected = "Account created successfully.";
         // Assert
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void AccountCreationFailsWhenPasswordContaintsNonNumericCharacters()
+    {
+         // Arrange
+         CreateAccount acc = new CreateAccount();
+         // Act
+         String actual = acc.accountCreation("username", "p");
+         String expected = "Account creation failed because password contains non numeric characters.";
+         // Assert
+         Assert.assertEquals(expected, actual);
     }
 }

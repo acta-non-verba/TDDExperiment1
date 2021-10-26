@@ -12,13 +12,14 @@ public class CreateAccount {
 
         if (message.equals(""))
             message = "Account created successfully.";
+            
         return message;
     }
 
     private String validatePassword(String password) {
 
         if (password.equals("")) {
-            return "Account Creation Failed.";
+            return "Account Creation Failed, password cannot be empty.";
         }
         if (!password.matches("^[0-9]+$")) {
             return "Account creation failed because password contains non numeric characters.";
@@ -33,12 +34,10 @@ public class CreateAccount {
         if (!userName.matches("[a-zA-Z]+")) {
             return "Account creation failed, username should have all alphabets.";
         }
-        if (userName.length() > 11) {
-            return "Account creation failed because username contains more than 11 characters.";
+        if (userName.length() > 11 || userName.length() < 2) {
+            return "Account creation failed because username length should be less  than 11 and greater than 1.";
         }
-        if (userName.length() < 2) {
-            return "Account creation failed because username contains less than 2 characters.";
-        }
+        
         return "";
     }
 
