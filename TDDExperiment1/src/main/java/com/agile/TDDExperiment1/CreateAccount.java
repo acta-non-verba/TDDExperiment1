@@ -1,16 +1,18 @@
 
 package com.agile.TDDExperiment1;
 
+import java.util.Objects;
+import java.util.function.Predicate;
+
 public class CreateAccount {
 
+    Predicate<String> emptyAndNullCheck = uname -> Objects.isNull(uname) || uname.isEmpty();
     public String accountCreation(String userName, String password) {
-        String message = "";
-        
-        message = validateUsername(userName);
-        if (message.equals(""))
+        String message = validateUsername(userName);
+        if (emptyAndNullCheck.test(message))
             message = validatePassword(password);
 
-        if (message.equals(""))
+        if (emptyAndNullCheck.test(message))
             message = "Account created successfully.";
             
         return message;
@@ -18,7 +20,7 @@ public class CreateAccount {
 
     private String validatePassword(String password) {
 
-        if (password.equals("")) {
+        if (emptyAndNullCheck.test(password)) {
             return "Account Creation Failed, password cannot be empty.";
         }
         if (!password.matches("^[0-9]+$")) {
@@ -28,7 +30,8 @@ public class CreateAccount {
     }
 
     private String validateUsername(String userName) {
-        if (userName.equals("")) {
+        
+        if (emptyAndNullCheck.test(userName)) {
             return "Account Creation Failed, Username cannot be empty.";
         }
         if (!userName.matches("[a-zA-Z]+")) {

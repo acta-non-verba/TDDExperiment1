@@ -31,7 +31,7 @@ public class CreateAccountTest {
         // Arrange
         CreateAccount acc = new CreateAccount();
         // Act
-        String actual = acc.accountCreation("username", "");
+        String actual = acc.accountCreation("username","");
         String expected = "Account Creation Failed, password cannot be empty.";
         // Assert
         Assert.assertEquals(expected, actual);
@@ -142,7 +142,7 @@ public class CreateAccountTest {
          // Arrange
          CreateAccount acc = new CreateAccount();
          // Act
-         String actual = acc.accountCreation("username", "p");
+         String actual = acc.accountCreation("username", "p#");
          String expected = "Account creation failed because password contains non numeric characters.";
          // Assert
          Assert.assertEquals(expected, actual);
