@@ -1,22 +1,30 @@
 
 package com.agile.TDDExperiment1;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Predicate;
+
 
 public class CreateAccount {
 
     Predicate<String> emptyAndNullCheck = uname -> Objects.isNull(uname) || uname.isEmpty();
+    private static final Map<String,String> userInfoMap = new HashMap<String,String>();
+    
     public String accountCreation(String userName, String password) {
         String message = validateUsername(userName);
         if (emptyAndNullCheck.test(message))
             message = validatePassword(password);
 
-        if (emptyAndNullCheck.test(message))
+        if (emptyAndNullCheck.test(message)){
+            addUser(userName,password);
             message = "Account created successfully.";
+        }
             
         return message;
     }
+  
 
     private String validatePassword(String password) {
 
@@ -43,5 +51,12 @@ public class CreateAccount {
         
         return "";
     }
+    
+    private void addUser(String userName, String password) {
+        userInfoMap.put(userName, password);
+    }
 
+    public Map<String,String> getUserInfo(){
+        return userInfoMap;
+    }
 }
