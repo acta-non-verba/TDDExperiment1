@@ -4,14 +4,15 @@ import java.util.Map;
 
 public class LoginAccount {
 
+    
 
     public String accountLogin(String username, String password) {
         CreateAccount createAccount = new CreateAccount();
         Map<String,String> userInfo = createAccount.getUserInfo();
         if(userInfo.size()>0){
-        if(!username.equals("username"))
+        if(!userInfo.containsKey(username))
             return "Login failed. Invalid username";
-        if(!password.equals("12345"))
+        else if(!userInfo.get(username).equals(password))
             return "Login failed. Invalid password";
         return "Login Successful";
     }else
