@@ -1,10 +1,25 @@
 package com.agile.TDDExperiment1;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class LoginAccountTest {
-    
+    public Map<String,String> userInfo = new HashMap<String,String>();
+    @Before
+    public void setUp(){
+        CreateAccount acc = new CreateAccount();
+        acc.accountCreation("username", "12345");
+        acc.accountCreation("Ravi", "12345");
+        acc.accountCreation("Sasi", "12345");
+        acc.accountCreation("Mithra", "12345");
+        acc.accountCreation("Nisha123", "12345");
+        userInfo = acc.getUserInfo();
+    }
+
     @Test
     public void loginSuccessfullWhenValidUserNameAndPasswordIsPassed(){
         //Arrange 
