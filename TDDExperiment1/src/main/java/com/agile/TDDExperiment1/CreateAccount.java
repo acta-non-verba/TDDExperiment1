@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Predicate;
-import java.util.regex.*;
 
 public class CreateAccount {
 
@@ -33,21 +32,37 @@ public class CreateAccount {
         if (password.length() < 8) {
             return "Account creation failed because password length is less than 8.";
         }
-        //  /(.*[a-z]){3}/i
-        //  (?=(.*[a-zA-Z]){2,})
-        //[a-zA-Z]{2,}i
-        //[A-Z]{2,}i
-        //(?=.*[a-z])(?=.*[A-Z])
-        String regExpr="^(?=.*[0-9])"+"(?=.*[a-zA-Z]{2}+)";
-        Pattern p = Pattern.compile(regExpr);
-        Matcher m = p.matcher(password);
-        if(!m.matches()){
-            return "Account creation failed because password does not contain at least two alphabets.";
+        int alphaCount = getAlphabetCount(password);
+        if(alphaCount<2){
+             return "Account creation failed because password does not contain at least two alphabets.";
         }
-        // if (!password.matches("^[0-9]+$")) {
-        //     return "Account creation failed because password contains non numeric characters.";
-        // }
+        int digitCount=getDigitCount(password);
+        if(digitCount<2){
+            return "Account creation failed because password does not contain at least two numbers.";
+        }
         return "";
+    }
+
+    private int getDigitCount(String password) {
+        char[] passwordChars = password.toCharArray();
+        var count=0;
+        for (char ch : passwordChars) {
+            if (Character.isDigit(ch)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private int getAlphabetCount(String password) {
+        char[] passwordChars = password.toCharArray();
+        var count=0;
+        for (char ch : passwordChars) {
+            if (Character.isLetter(ch)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     private String validateUsername(String userName) {

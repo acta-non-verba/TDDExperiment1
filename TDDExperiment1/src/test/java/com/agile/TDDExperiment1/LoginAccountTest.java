@@ -12,11 +12,11 @@ public class LoginAccountTest {
     @Before
     public void setUp(){
         CreateAccount acc = new CreateAccount();
-        acc.accountCreation("username", "12345");
-        acc.accountCreation("Ravi", "12345");
-        acc.accountCreation("Sasi", "12345");
-        acc.accountCreation("Mithra", "12345");
-        acc.accountCreation("Nisha123", "12345");
+        acc.accountCreation("username", "ab123456");
+        acc.accountCreation("Ravi", "ab123456");
+        acc.accountCreation("Sasi", "ab123456");
+        acc.accountCreation("Mithra", "ab123456");
+        acc.accountCreation("Nisha123", "ab123456");
         userInfo = acc.getUserInfo();
     }
 
@@ -25,7 +25,7 @@ public class LoginAccountTest {
         //Arrange 
         LoginAccount loginAcc = new LoginAccount();
         //Act
-        String loginMsg = loginAcc.accountLogin("username","12345");
+        String loginMsg = loginAcc.accountLogin("username","ab123456");
         //Assert
         Assert.assertEquals("Login Successful", loginMsg);
     }

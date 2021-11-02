@@ -44,7 +44,7 @@ public class CreateAccountTest {
         // Arrange
         CreateAccount acc = new CreateAccount();
         // Act
-        String actual = acc.accountCreation("username", "11111111");
+        String actual = acc.accountCreation("username", "ab111111");
         String expected = "Account created successfully.";
         // Assert
         Assert.assertEquals(expected, actual);
@@ -77,7 +77,7 @@ public class CreateAccountTest {
         // Arrange
         CreateAccount acc = new CreateAccount();
         // Act
-        String actual = acc.accountCreation("us", "11111111");
+        String actual = acc.accountCreation("us", "ab111111");
         String expected = "Account created successfully.";
         // Assert
         Assert.assertEquals(expected, actual);
@@ -88,7 +88,7 @@ public class CreateAccountTest {
         // Arrange
         CreateAccount acc = new CreateAccount();
         // Act
-        String actual = acc.accountCreation("usernm", "11111111");
+        String actual = acc.accountCreation("usernm", "ab111111");
         String expected = "Account created successfully.";
         // Assert
         Assert.assertEquals(expected, actual);
@@ -99,7 +99,7 @@ public class CreateAccountTest {
         // Arrange
         CreateAccount acc = new CreateAccount();
         // Act
-        String actual = acc.accountCreation("UniqueUserN", "11111111");
+        String actual = acc.accountCreation("UniqueUserN", "ab111111");
         String expected = "Account created successfully.";
         // Assert
         Assert.assertEquals(expected, actual);
@@ -127,29 +127,6 @@ public class CreateAccountTest {
         Assert.assertEquals(expected, actual);
     }
 
-    // @Test
-    // public void AccountCreationSuccessFullwhenPasswordIsAllNumerals() {
-    //     // Arrange
-    //     CreateAccount acc = new CreateAccount();
-    //     // Act
-    //     String actual = acc.accountCreation("username", "12344567");
-    //     String expected = "Account created successfully.";
-    //     // Assert
-    //     Assert.assertEquals(expected, actual);
-    // }
-
-    // @Test
-    // public void AccountCreationFailsWhenPasswordContaintsNonNumericCharacters()
-    // {
-    //      // Arrange
-    //      CreateAccount acc = new CreateAccount();
-    //      // Act
-    //      String actual = acc.accountCreation("username", "p#");
-    //      String expected = "Account creation failed because password contains non numeric characters.";
-    //      // Assert
-    //      Assert.assertEquals(expected, actual);
-    // }
-
     /*User story 3*/
     @Test
     public void accountCreationFailsWhenPasswordLengthLessThanEight()
@@ -170,6 +147,17 @@ public class CreateAccountTest {
         //Act
         String actual=acc.accountCreation("username", "p5665641");
         String expected="Account creation failed because password does not contain at least two alphabets.";
+        //Assert
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void accountCreationFailsWhenPasswordContainsLessthanTwoNumbers()
+    {
+        //Arrange
+        CreateAccount acc=new CreateAccount();        
+        //Act
+        String actual=acc.accountCreation("username", "AbcDefG1");
+        String expected="Account creation failed because password does not contain at least two numbers.";
         //Assert
         assertEquals(expected, actual);
     }
